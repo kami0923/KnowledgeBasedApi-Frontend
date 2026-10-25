@@ -1,0 +1,62 @@
+{
+  // Terminal -> Run Task... (or Ctrl+Shift+B for the build ones).
+  // Same tasks as KnowledgeBaseAPI/.vscode/tasks.json, duplicated so they are
+  // available whichever folder of this solution you have open in VS Code.
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Frontend: npm run dev (Vite http://localhost:5173)",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": {
+        "cwd": "D:/.NET Learning/FirstWebApi/kb-auth-frontend"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Frontend: npm run build",
+      "type": "shell",
+      "command": "npm run build",
+      "options": {
+        "cwd": "D:/.NET Learning/FirstWebApi/kb-auth-frontend"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend: npm install",
+      "type": "shell",
+      "command": "npm install",
+      "options": {
+        "cwd": "D:/.NET Learning/FirstWebApi/kb-auth-frontend"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "API: free port 7084 (kill orphan KnowledgeBaseAPI.exe)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "Get-Process KnowledgeBaseAPI -ErrorAction SilentlyContinue | Stop-Process -Force; 'port 7084 should be free now'"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "API: who owns port 7084?",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "Get-NetTCPConnection -State Listen -LocalPort 7084,5021 -ErrorAction SilentlyContinue | Select-Object LocalPort,OwningProcess | Format-Table -AutoSize"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}
